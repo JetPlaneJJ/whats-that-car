@@ -5,6 +5,7 @@ Project Summary: (WIP) Mobile app that allows a user to take a picture of a car 
 - Unzip Car_Brand_Logos.zip for the preprocessing scripts
 
 ## Project Contents
+```
 .
 ├── README.md
 ├── models
@@ -15,6 +16,7 @@ Project Summary: (WIP) Mobile app that allows a user to take a picture of a car 
 │   ├── image_to_subdirectory.sh
 │   └── logo_scraper.py
 └── research_notes.md
+```
 
 # Tools and sources used
 ## Kaggle Notebook: https://www.kaggle.com/code/jiojlggqgrqgy5/car-brand-classification/edit
