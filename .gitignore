@@ -154,3 +154,13 @@ cython_debug/
 
 # Other
 ./data/Car_Brand_Logos.zip
+
+*.iml
+.gradle
+/local.properties
+.idea
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties

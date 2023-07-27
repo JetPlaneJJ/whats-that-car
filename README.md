@@ -8,20 +8,14 @@ Project Summary: (WIP) Mobile app that allows a user to take a picture of a car 
 ```
 .
 ├── README.md
-├── models
-│   ├── ...
-│   └── ...
-├── preprocessing_scripts (scripts for preparing the data)
-│   ├── image_cleaner.py
-│   ├── image_to_subdirectory.sh
-│   └── logo_scraper.py
-└── research_notes.md
+├── model_training/
+│   ├── car-brand-classification.ipynb (Kaggle notebook)
+│   ├── models/
+│   └── preprocessing_scripts/ (for cleaning dataset)
+├── research_notes.md
+└── what-that-car-android/ (Android app - Work in Progress)
+    ├── app/ ...
 ```
 
-# Tools and sources used
-## Kaggle Notebook: https://www.kaggle.com/code/jiojlggqgrqgy5/car-brand-classification/edit
-- Used for training the model
-- WIP for improvements
-
-## Dataset
+## Dataset Source
 - https://www.kaggle.com/datasets/volkandl/car-brand-logos uploaded to Kaggle by user 'Volkan Özdemir'
