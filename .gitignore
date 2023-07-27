@@ -164,3 +164,4 @@ cython_debug/
 .externalNativeBuild
 .cxx
 local.properties
+data
