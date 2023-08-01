@@ -6,7 +6,7 @@ from pathlib import Path
 import imghdr
 import os
 
-data_dir = "../data/Car_Brand_Logos"
+data_dir = "../../data/Car_Brand_Logos"
 image_extensions = [".png", ".jpg"]
 img_type_accepted_by_tf = ["bmp", "gif", "jpeg", "png"]
 

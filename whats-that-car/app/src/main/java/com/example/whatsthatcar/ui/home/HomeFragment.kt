@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         // Build ML model
-        val localModel = LocalModel.Builder().setAssetFilePath("model_with_metadata.tflite").build()
+        val localModel = LocalModel.Builder().setAssetFilePath("model.tflite").build()
 
         // Get and set test image
         val img: ImageView = root.findViewById(R.id.imageToLabel)
@@ -87,7 +87,7 @@ class HomeFragment : Fragment() {
 
     private fun assetsToBitmap(fileName: String): Bitmap? {
         return try {
-            with(activity!!.assets.open(fileName)) {
+            with(requireActivity().assets.open(fileName)) {
                 BitmapFactory.decodeStream(this)
             }
         } catch (e: IOException) { null }

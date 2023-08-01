@@ -1,5 +1,5 @@
-# Scrapes logo images from carlogos.org
-# Sources consulted: 
+# Scrapes logo images from carlogos.org car brands page
+# Sources consulted:
 # - Beautiful Soup docs
 # - https://stackoverflow.com/questions/41982475/scraper-in-python-gives-access-denied
 # - https://stackoverflow.com/questions/18408307/how-to-extract-and-download-all-images-from-a-website-using-beautifulsoup
@@ -8,36 +8,35 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
-def extract_source(url):
-  headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0'}
-  source = requests.get(url, headers=headers).text
-  return source
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0'}
+home_site = "https://www.carlogos.org"
+page_url = f'{home_site}/car-brands'
 
-def extract_img(url):
-  headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0'}
-  source = requests.get(url, headers=headers)
-  return source
 
 def download_images(site_url):
-  response = extract_source(site_url)
-  soup=bs4.BeautifulSoup(response)
-  img_tags = soup.find_all('img')
+    source = requests.get(site_url, headers=headers).text
+    soup = bs4.BeautifulSoup(source, features='lxml')
+    img_tags = soup.find_all('img')
 
-  urls = [img['src'] for img in img_tags]
+    urls = [img['src'] for img in img_tags]
+    for url in urls:
+        img_url = f'{home_site}/{url}'
+        print(img_url)
+        filename = re.search(r'/([\w_-]+[.](jpg|png))$', url)
+        if not filename:
+            print("Regex didn't match with the url: {}".format(url))
+            continue
+        with open(f'images/{filename.group(1)}', 'wb') as f:
+            if 'http' not in url:
+                url = '{}{}'.format(site_url, url)
+            response = requests.get(img_url, headers=headers)
+            f.write(response.content)
+            f.close()
 
-  for url in urls:
-      filename = re.search(r'/([\w_-]+[.](jpg|png))$', url)
-      if not filename:
-          print("Regex didn't match with the url: {}".format(url))
-          continue
-      with open(filename.group(1), 'wb') as f:
-          if 'http' not in url:
-              url = '{}{}'.format(site_url, url)
-          response = extract_img(url)
-          print(response)
-        #   f.write(response.content)
 
-page_url = "https://www.carlogos.org/car-brands/"
 download_images(page_url)
-for i in range(2,8):
-  download_images('{}page-{}.html'.format(page_url,i))
+
+# Download from other pages
+# for i in range(2,8):
+#   download_images('{}page-{}.html'.format(page_url,i))
